@@ -61,7 +61,7 @@ InflationOpFrame::doApply(Application& app, LedgerDelta& delta,
     int64_t minBalance =
         bigDivide(totalVotes, INFLATION_WIN_MIN_PERCENT, TRILLION, ROUND_DOWN);
 
-    std::vector<AccountFrame::InflationVotes> winners;
+   /* std::vector<AccountFrame::InflationVotes> winners;
     auto& db = ledgerManager.getDatabase();
 
     AccountFrame::processForInflation(
@@ -126,10 +126,11 @@ InflationOpFrame::doApply(Application& app, LedgerDelta& delta,
     }
 
     inflationDelta.commit();
-
+    */
     app.getMetrics()
         .NewMeter({"op-inflation", "success", "apply"}, "operation")
         .Mark();
+
     return true;
 }
 
