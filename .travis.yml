@@ -42,3 +42,5 @@ notifications:
 branches:
  only:
  - auto
+
+
