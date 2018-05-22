@@ -66,3 +66,4 @@ See [INSTALL-Windows.md](INSTALL-Windows.md)
 - Type `make` or `make -j` (for aggressive parallel build)
 - Type `make check` to run tests.
 - Type `make install` to install.
+
