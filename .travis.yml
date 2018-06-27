@@ -36,4 +36,11 @@ cache:
 
 notifications:
   email: false
-
+before_deploy: 
+  - pyenv global 2.7
+  - pip install cloudsmith-cli
+deploy:
+  - provider: script
+  - script: cloudsmith push <format> digitalbits/dbtest <package-file> 
+  - on: 
+      branch: dev
