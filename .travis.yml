@@ -41,6 +41,6 @@ before_deploy:
   - pip install cloudsmith-cli
 deploy:
   - provider: script
-  - script: cloudsmith push <format> digitalbits/dbtest <package-file> 
+  - script: cloudsmith push rpm digitalbits/dbtest digitalbits-core.x86_64.rpm  
   - on: 
       branch: dev
