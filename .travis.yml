@@ -43,4 +43,4 @@ deploy:
   - provider: script
   - script: cloudsmith push rpm digitalbits/dbtest digitalbits-core.x86_64.rpm  
   - on: 
-      branch: dev
+      branch: dev-deploy
