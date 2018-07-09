@@ -61,72 +61,72 @@ InflationOpFrame::doApply(Application& app, LedgerDelta& delta,
     int64_t minBalance =
         bigDivide(totalVotes, INFLATION_WIN_MIN_PERCENT, TRILLION, ROUND_DOWN);
 
-   /* std::vector<AccountFrame::InflationVotes> winners;
-    auto& db = ledgerManager.getDatabase();
+    /* std::vector<AccountFrame::InflationVotes> winners;
+     auto& db = ledgerManager.getDatabase();
 
-    AccountFrame::processForInflation(
-        [&](AccountFrame::InflationVotes const& votes) {
-            if (votes.mVotes >= minBalance)
-            {
-                winners.push_back(votes);
-                return true;
-            }
-            return false;
-        },
-        INFLATION_NUM_WINNERS, db);
+     AccountFrame::processForInflation(
+         [&](AccountFrame::InflationVotes const& votes) {
+             if (votes.mVotes >= minBalance)
+             {
+                 winners.push_back(votes);
+                 return true;
+             }
+             return false;
+         },
+         INFLATION_NUM_WINNERS, db);
 
-    auto inflationAmount = bigDivide(lcl.totalCoins, INFLATION_RATE_TRILLIONTHS,
-                                     TRILLION, ROUND_DOWN);
-    auto amountToDole = inflationAmount + lcl.feePool;
+     auto inflationAmount = bigDivide(lcl.totalCoins,
+     INFLATION_RATE_TRILLIONTHS, TRILLION, ROUND_DOWN); auto amountToDole =
+     inflationAmount + lcl.feePool;
 
-    lcl.feePool = 0;
-    lcl.inflationSeq++;
+     lcl.feePool = 0;
+     lcl.inflationSeq++;
 
-    // now credit each account
-    innerResult().code(INFLATION_SUCCESS);
-    auto& payouts = innerResult().payouts();
+     // now credit each account
+     innerResult().code(INFLATION_SUCCESS);
+     auto& payouts = innerResult().payouts();
 
-    int64 leftAfterDole = amountToDole;
+     int64 leftAfterDole = amountToDole;
 
-    for (auto const& w : winners)
-    {
-        AccountFrame::pointer winner;
+     for (auto const& w : winners)
+     {
+         AccountFrame::pointer winner;
 
-        int64 toDoleThisWinner =
-            bigDivide(amountToDole, w.mVotes, totalVotes, ROUND_DOWN);
+         int64 toDoleThisWinner =
+             bigDivide(amountToDole, w.mVotes, totalVotes, ROUND_DOWN);
 
-        if (toDoleThisWinner == 0)
-            continue;
+         if (toDoleThisWinner == 0)
+             continue;
 
-        winner =
-            AccountFrame::loadAccount(inflationDelta, w.mInflationDest, db);
+         winner =
+             AccountFrame::loadAccount(inflationDelta, w.mInflationDest, db);
 
-        if (winner)
-        {
-            leftAfterDole -= toDoleThisWinner;
-            if (ledgerManager.getCurrentLedgerVersion() <= 7)
-            {
-                lcl.totalCoins += toDoleThisWinner;
-            }
-            if (!winner->addBalance(toDoleThisWinner))
-            {
-                throw std::runtime_error(
-                    "inflation overflowed destination balance");
-            }
-            winner->storeChange(inflationDelta, db);
-            payouts.emplace_back(w.mInflationDest, toDoleThisWinner);
-        }
-    }
+         if (winner)
+         {
+             leftAfterDole -= toDoleThisWinner;
+             if (ledgerManager.getCurrentLedgerVersion() <= 7)
+             {
+                 lcl.totalCoins += toDoleThisWinner;
+             }
+             if (!winner->addBalance(toDoleThisWinner))
+             {
+                 throw std::runtime_error(
+                     "inflation overflowed destination balance");
+             }
+             winner->storeChange(inflationDelta, db);
+             payouts.emplace_back(w.mInflationDest, toDoleThisWinner);
+         }
+     }
 
-    // put back in fee pool as unclaimed funds
-    lcl.feePool += leftAfterDole;
-    if (ledgerManager.getCurrentLedgerVersion() > 7)
-    {
-        lcl.totalCoins += inflationAmount;
-    }
+     // put back in fee pool as unclaimed funds
+     lcl.feePool += leftAfterDole;
+     if (ledgerManager.getCurrentLedgerVersion() > 7)
+     {
+         lcl.totalCoins += inflationAmount;
+     }
 
-    inflationDelta.commit();
-    */
+     inflationDelta.commit();
+     */
     app.getMetrics()
         .NewMeter({"op-inflation", "success", "apply"}, "operation")
         .Mark();
