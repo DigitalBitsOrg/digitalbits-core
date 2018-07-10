@@ -2,8 +2,8 @@ language: cpp
 sudo: false
 
 compiler:
-- clang
-- gcc
+  - clang
+  - gcc
 
 addons:
   postgresql: "9.3"
@@ -31,8 +31,8 @@ script: travis_wait 30 ./travis-build.sh
 
 cache:
   directories:
-  - $HOME/.ccache
-  - .libs
+    - $HOME/.ccache
+    - .libs
 
 notifications:
   email: false
@@ -43,8 +43,8 @@ before_deploy:
   - pyenv global 2.7
   - pip install cloudsmith-cli
 deploy:
-  - skip_cleanup: true
-  - provider: script
-  - script: cloudsmith push rpm digitalbits/dbtest digitalbits-core.x86_64.rpm  
-  - on: 
-      branch: devdeploy
+  provider: script
+  script: cloudsmith push rpm digitalbits/dbtest digitalbits-core.x86_64.rpm  
+  skip_cleanup: true
+  on: 
+    branch: dev-deploy
