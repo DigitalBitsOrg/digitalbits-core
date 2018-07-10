@@ -1,3 +1,5 @@
+#!/bin/bash
+
 rm -rf bin
 
 export PGUSER=postgres PGPASSWORD=temp123

@@ -1,12 +1,10 @@
 language: cpp
 sudo: false
-
 compiler:
 - clang
 - gcc
-
 addons:
-  postgresql: "9.3"
+  postgresql: '9.3'
   apt:
     sources:
     - llvm-toolchain-trusty-3.5
@@ -26,14 +24,11 @@ addons:
     - pkg-config
     - clang-format-5.0
     - pandoc
-
 script: travis_wait 30 ./travis-build.sh
-
 cache:
   directories:
-  - $HOME/.ccache
-  - .libs
-
+  - "$HOME/.ccache"
+  - ".libs"
 notifications:
   email: false
   slack:
@@ -47,3 +42,4 @@ deploy:
   - script: cloudsmith push rpm digitalbits/dbtest digitalbits-core.x86_64.rpm  
   - on: 
       branch: devdeploy
+

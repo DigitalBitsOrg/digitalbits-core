@@ -2,24 +2,24 @@
 title: History
 ---
 
-Stellar Core, or stellar-core, separates data into "current" and "historical."
+DigitalBits Core, or digitalbits-core, separates data into "current" and "historical."
 
 Current data is the subject of peer-to-peer messages--consensus is only concerned with the present,
-not the past. Current data _resides_ in a local SQL database paired with each stellar-core
-process. This database is consulted and updated "live" in an ACID fashion as stellar-core applies
+not the past. Current data _resides_ in a local SQL database paired with each digitalbits-core
+process. This database is consulted and updated "live" in an ACID fashion as digitalbits-core applies
 each [transaction](transaction.md) set for which consensus was reached and forms each new [ledger](ledger.md).
 
-Unlike many similar systems, stellar-core does _not_ need to consult history in order to apply a
+Unlike many similar systems, digitalbits-core does _not_ need to consult history in order to apply a
 single transaction or set of transactions. Only "current" data--the state of the current ledger
 and the hash of the previous one--is required to apply transactions. "Historical" data exists for
 peers to catch up to one another, as well as for record auditing and interoperability with other
 programs.
 
-Historical data resides in _history archives_. A stellar-core process should almost always have
-access to a history archive. While it is possible to run a stellar-core process without any
+Historical data resides in _history archives_. A digitalbits-core process should almost always have
+access to a history archive. While it is possible to run a digitalbits-core process without any
 associated history archives, other peers will not be able to catch up with it, and it will not be
 able to catch up with other peers, so it will likely be a very incomplete configuration. For
-normal operations, a stellar-core process should always be configured with one or more history
+normal operations, a digitalbits-core process should always be configured with one or more history
 archives.
 
 For history archives to be effective, they should be configured in such a way that each validator
@@ -30,13 +30,13 @@ write to, while also knowing how to read from all archives in the group.
 
 ## History archives
 
-Many different facilities or services can be used as history archives; stellar-core only needs to be
+Many different facilities or services can be used as history archives; digitalbits-core only needs to be
 supplied with a way to "get" and "put" files to and from the archive. For example, history archives
-may be FTP or SFTP servers, filesystem directories shared between stellar-core processes, AWS S3,
+may be FTP or SFTP servers, filesystem directories shared between digitalbits-core processes, AWS S3,
 Google Cloud Storage, Azure Blob storage or similar commodity object storage services.
 
-History archives are defined in a very lightweight fashion, in stellar-core's configuration file, by
-providing a pair of `get` and `put` command templates. stellar-core will run the provided command
+History archives are defined in a very lightweight fashion, in digitalbits-core's configuration file, by
+providing a pair of `get` and `put` command templates. digitalbits-core will run the provided command
 template, with its own file names substituted for placeholders in the template, in order to get files
 from, and put files into, a given history archive. This interface is meant to support simple
 commands like `curl`, `wget`, `aws`, `gcutil`, `s3cmd`, `cp`, `scp`, `ftp` or similar. Several
@@ -45,7 +45,7 @@ examples are provided in the example configuration files.
 
 ## Serialization to XDR and gzip
 
-stellar-core leans heavily on the XDR data format. This is an old, stable, standardized
+digitalbits-core leans heavily on the XDR data format. This is an old, stable, standardized
 serialization format, defined in RFC 4506 and used for several standard unix and internet protocols
 and formats.
 
@@ -55,14 +55,14 @@ XDR is used for 3 related but different tasks, the first 2 of which are discusse
   * Cryptographically hashing ledger entries, buckets, transactions, and similar values.
   * Storing and retrieving history (discussed in this document).
 
-When storing XDR files to history archives, stellar-core first applies gzip (RFC 1952) compression
+When storing XDR files to history archives, digitalbits-core first applies gzip (RFC 1952) compression
 to the files. The resulting `.xdr.gz` files can be concatenated, accessed in streaming fashion, or
-decompressed to `.xdr` files and dumped as plain text by stellar-core.
+decompressed to `.xdr` files and dumped as plain text by digitalbits-core.
 
 
 ## Checkpointing
 
-During normal operation, a validating stellar-core server will save a "checkpoint" of its recent
+During normal operation, a validating digitalbits-core server will save a "checkpoint" of its recent
 operations to XDR files, compress them, and publish them to all of its configured writable history
 archives once every 64 ledgers (about once every 5 minutes).
 
@@ -82,7 +82,7 @@ safely copied to any other history archive that is missing them.
 
 ## Catching up
 
-When stellar-core finds that it is out of sync with its peers--either because it is joining
+When digitalbits-core finds that it is out of sync with its peers--either because it is joining
 a network for the first time, or because it crashed or was disconnected for some reason--it
 contacts a history archive and attempts to find published history records from which to "catch up."
 This is the first and most essential use of history archives: they are how peers catch up with
@@ -90,10 +90,10 @@ one another.
 
 This bears repeating: peers **never** send historical data to one another directly, and they
 **must** share access to a common history archive if they're ever to successfully catch up with one
-another when out of sync. If you run a stellar-core server without configuring history archives, it
+another when out of sync. If you run a digitalbits-core server without configuring history archives, it
 will never synchronize with its peers (unless they all start at the same time).
 
-The peer-to-peer protocol among stellar-core peers deals only with the current ledger's transactions
+The peer-to-peer protocol among digitalbits-core peers deals only with the current ledger's transactions
 and consensus rounds. History is sent one-way from active peers to history archives, and is
 retrieved one-way by new peers from history archives. Aside from establishing which value to
 catch up to, peers do _not_ provide one another with the data to catch up when out of sync.
@@ -108,28 +108,28 @@ enough history material to succeed.
 
 ## Auditing and interoperability
 
-One of the factors motivating the stellar-core history design was to permit other programs and 3rd
+One of the factors motivating the digitalbits-core history design was to permit other programs and 3rd
 parties transparent, easy, and unbiased access to the ledger and transaction history, without having
-to "go through" the stellar-core program or protocol. Any program that can fetch data from a history
+to "go through" the digitalbits-core program or protocol. Any program that can fetch data from a history
 archive and deserialize XDR can read the complete history; there is no need to speak the
-stellar-core peer-to-peer protocol or interact with any stellar-core peers.
+digitalbits-core peer-to-peer protocol or interact with any digitalbits-core peers.
 
 With the exception of a single "most recent checkpoint" metadata file, all files written to a
 history archive are written _once_ and never modified. Bucket files are named by hash, but
 transaction sets, ledger headers, and checkpoint metadata (including the hashes of buckets) are named
-sequentially. Anyone wishing to audit or reconstruct the activity of stellar-core by monitoring a
+sequentially. Anyone wishing to audit or reconstruct the activity of digitalbits-core by monitoring a
 history archive can simply poll the archive and consume new files as they arrive.
 
-All XDR encoding and decoding in stellar-core is done by code generated automatically from the
+All XDR encoding and decoding in digitalbits-core is done by code generated automatically from the
 associated [XDR schemas](/src/xdr); any other compliant XDR code generator should produce a
-deserializer that can read and write the same history. The XDR code generator used in stellar-core
+deserializer that can read and write the same history. The XDR code generator used in digitalbits-core
 is developed independently, but [included in the source tree as a submodule](../lib/xdrpp).
 
 
 ## Additional design considerations
 
 In addition to the considerations of interoperability and software flexibility presented above, a
-few additional, less obvious motives are at work in the design of the history system in stellar-core.
+few additional, less obvious motives are at work in the design of the history system in digitalbits-core.
 A few reasons that the extra effort of configuring independent history archives is, in our judgment, worth its slight awkwardness:
 
   - Configuring independent history archives helps ensure valid backups get made. It is very easy to build a backup system that is not run
@@ -138,10 +138,10 @@ A few reasons that the extra effort of configuring independent history archives 
     to use the _same code path_ that is making continuous, long-term flat-file backups, we help
     ensure the backup code _works_, and is being run on a regular schedule.
 
-  - This design reduces the risk of lost peers. stellar-core peers are comparatively ephemeral: new ones can
+  - This design reduces the risk of lost peers. digitalbits-core peers are comparatively ephemeral: new ones can
     be brought online relatively quickly (only downloading missing buckets) and the state stored on
     a given peer is likely only one checkpoint, or 5 minutes, worth of unique data (the rest has
-    been archived). While stellar-core is designed to run as a highly fault-tolerant replicated
+    been archived). While digitalbits-core is designed to run as a highly fault-tolerant replicated
     system in the first place, the less damage suffered by losing a single replica, the better.
 
   - It is fast, flexible and cheap. Copying bytes sequentially from flat files is the case that all
@@ -283,7 +283,7 @@ In total, each checkpoint number `0xwwxxyyzz` consists of the following files:
     ledger. The file is similar to the transactions file, in that there is one entry per transaction
     applied to a ledger in the checkpoint; but this file stores the _results_ of applying each
     transaction. These files allow reconstruction the history of changes to the ledger without
-    actually running the `stellar-core` transaction-apply logic.
+    actually running the `digitalbits-core` transaction-apply logic.
 
   - (Optionally) one SCP file, named by ledger number as `scp/ww/xx/yy/scp-wwxxyyzz.xdr.gz`. The file
     contains a sequence of XDR structures of the type
