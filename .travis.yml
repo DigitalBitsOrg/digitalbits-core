@@ -43,6 +43,7 @@ before_deploy:
   - pyenv global 2.7
   - pip install cloudsmith-cli
 deploy:
+  - skip_cleanup: true
   - provider: script
   - script: cloudsmith push rpm digitalbits/dbtest digitalbits-core.x86_64.rpm  
   - on: 
