@@ -4,60 +4,60 @@ title: Administration
 
 ## Purpose of this document
 
-This document describes various aspects of running `stellar-core` for **system administrators** (but may be useful to a broader audience).
+This document describes various aspects of running `digitalbits-core` for **system administrators** (but may be useful to a broader audience).
 
 ## Introduction
 
-Stellar Core is responsible for communicating directly with and maintaining 
-the Stellar peer-to-peer network. For a high-level introduction to Stellar Core, [watch this talk](https://www.youtube.com/watch?v=pt_mm8S9_WU) on the architecture and ledger basics:
+DigitalBits Core is responsible for communicating directly with and maintaining 
+the DigitalBits peer-to-peer network. For a high-level introduction to DigitalBits Core, [watch this talk](https://www.youtube.com/watch?v=pt_mm8S9_WU) on the architecture and ledger basics:
 
 [![Introduction to Stellar Core](https://i.ytimg.com/vi/pt_mm8S9_WU/hqdefault.jpg "Introduction to Stellar Core")](https://www.youtube.com/watch?v=pt_mm8S9_WU)
 
-It will also be useful to understand how [data flows](https://www.stellar.org/developers/stellar-core/software/core-data-flow.pdf) and is stored in stellar-core.
+It will also be useful to understand how [data flows](https://developer.digitalbits.io/digitalbits-core/software/core-data-flow.pdf) and is stored in digitalbits-core.
 
 ## Why run a node?
 
-Run stellar-core if you want to:
-* Obtain the most up-to-date and reliable data from the Stellar network
-* Generate extended meta data on activity within the Stellar network (change tracking, etc)
+Run digitalbits-core if you want to:
+* Obtain the most up-to-date and reliable data from the DigitalBits network
+* Generate extended meta data on activity within the DigitalBits network (change tracking, etc)
 * Submit transactions and their confirmations without depending on a third party
-* Extended control on which parties to trust in the Stellar network
-* Participate in validating the Stellar network
+* Extended control on which parties to trust in the DigitalBits network
+* Participate in validating the DigitalBits network
 
 
 ## Building
-See [readme](https://github.com/stellar/stellar-core/blob/master/README.md) for build instructions.
-We also provide a [docker container](https://github.com/stellar/docker-stellar-core-horizon) for a potentially quicker set up than building from source.
+See [readme](https://github.com/digitalbitsorg/digitalbits-core/blob/master/README.md) for build instructions.
+We also provide a [docker container](https://github.com/digitalbitsorg/docker-digitalbits-core-frontier) for a potentially quicker set up than building from source.
 
 ## Package based Installation
-If you are using Ubuntu 16.04 LTS we provide the latest stable releases of [stellar-core](https://github.com/stellar/stellar-core) and [stellar-horizon](https://github.com/stellar/go/tree/master/services/horizon) in Debian binary package format.
+If you are using Ubuntu 16.04 LTS we provide the latest stable releases of [digitalbits-core](https://github.com/digitalbitsorg/digitalbits-core) and [digitalbits-frontier](https://github.com/digitalbitsorg/go/tree/master/services/frontier) in Debian binary package format.
 
-See [detailed installation instructions](https://github.com/stellar/packages#sdf---packages)
+See [detailed installation instructions](https://github.com/digitalbitsorg/packages#sdf---packages)
 
 ## Configuring
-All configuration for stellar-core is done with a TOML file. By default 
-stellar-core loads 
+All configuration for digitalbits-core is done with a TOML file. By default 
+digitalbits-core loads 
 
-`./stellar-core.cfg`
+`./digitalbits-core.cfg`
 
 , but you can specify a different file to load on the command line:
 
-`$ stellar-core --conf betterfile.cfg` 
+`$ digitalbits-core --conf betterfile.cfg` 
 
-The [example config](https://github.com/stellar/stellar-core/blob/master/docs/stellar-core_example.cfg) describes all the possible 
+The [example config](https://github.com/digitalbitsorg/digitalbits-core/blob/master/docs/digitalbits-core_example.cfg) describes all the possible 
 configuration options.
 
-Here is an [example test network config](https://github.com/stellar/docker-stellar-core-horizon/blob/master/testnet/core/etc/stellar-core.cfg) for connecting to the test network.
+Here is an [example test network config](https://github.com/digitalbitsorg/docker-digitalbits-core-frontier/blob/master/testnet/core/etc/digitalbits-core.cfg) for connecting to the test network.
 
-Here is an [example public network config](https://github.com/stellar/docs/blob/master/other/stellar-core-validator-example.cfg) for connecting to the public network.
+Here is an [example public network config](https://github.com/digitalbitsorg/docs/blob/master/other/digitalbits-core-validator-example.cfg) for connecting to the public network.
 
 The examples in this file don't specify `--conf betterfile.cfg` for brevity.
 
 ## Running
-Stellar-core can be run directly from the command line, or through a supervision 
+Digitalbits-core can be run directly from the command line, or through a supervision 
 system such as `init`, `upstart`, or `systemd`.
 
-Stellar-core sends logs to standard output and `stellar-core.log` by default, 
+Digitalbits-core sends logs to standard output and `digitalbits-core.log` by default, 
 configurable as `LOG_FILE_PATH`.
  Log messages are classified by progressive _priority levels_:
   `TRACE`, `DEBUG`, `INFO`, `WARNING`, `ERROR` and `FATAL`.
@@ -66,47 +66,47 @@ configurable as `LOG_FILE_PATH`.
 The log level can be controlled by configuration, by the `-ll` command-line flag 
 or adjusted dynamically by administrative (HTTP) commands. Run:
 
-`$ stellar-core -c "ll?level=debug"`
+`$ digitalbits-core -c "ll?level=debug"`
 
 against a running system.
 Log levels can also be adjusted on a partition-by-partition basis through the 
 administrative interface.
  For example the history system can be set to DEBUG-level logging by running:
 
-`$ stellar-core -c "ll?level=debug&partition=history"` 
+`$ digitalbits-core -c "ll?level=debug&partition=history"` 
 
 against a running system.
  The default log level is `INFO`, which is moderately verbose and should emit 
  progress messages every few seconds under normal operation.
 
-Stellar-core can be gracefully exited at any time by delivering `SIGINT` or
+Digitalbits-core can be gracefully exited at any time by delivering `SIGINT` or
  pressing `CTRL-C`. It can be safely, forcibly terminated with `SIGTERM` or
   `SIGKILL`. The latter may leave a stale lock file in the `BUCKET_DIR_PATH`,
    and you may need to remove the file before it will restart. 
    Otherwise, all components are designed to recover from abrupt termination.
 
-Stellar-core can also be packaged in a container system such as Docker, so long 
+Digitalbits-core can also be packaged in a container system such as Docker, so long 
 as `BUCKET_DIR_PATH`, `TMP_DIR_PATH`, and the database are stored on persistent 
-volumes. For an example, see [docker-stellar-core](https://github.com/stellar/docker-stellar-core-horizon).
+volumes. For an example, see [docker-digitalbits-core-frontier](https://github.com/digitalbitsorg/docker-digitalbits-core-frontier).
 
 Note: `BUCKET_DIR_PATH` and `TMP_DIR_PATH` *must* reside on the same volume
-as stellar-core needs to rename files between the two.
+as digitalbits-core needs to rename files between the two.
 
 ## Administrative commands
-While running, interaction with stellar-core is done via an administrative 
+While running, interaction with digitalbits-core is done via an administrative 
 HTTP endpoint. Commands can be submitted using command-line HTTP tools such 
 as `curl`, or by 
 
-`$ stellar-core -c <command>`
+`$ digitalbits-core -c <command>`
 
 . The endpoint is not intended to be exposed to the public internet. It's typically accessed by administrators, 
-or by a mid-tier application to submit transactions to the Stellar network. 
+or by a mid-tier application to submit transactions to the DigitalBits network. 
 See [commands](./commands.md) for a description of the available commands.
 
 ## Hardware requirements
 The hardware requirements scale with the amount of activity in the network. 
-Currently stellar-core requires very modest hardware. It would be fine to run 
-on an AWS micro instance, for example.
+Currently digitalbits-core requires very modest hardware. It would be fine to run 
+on an AWS micro instance, for example. 
 
 # Configuration Choices
 
@@ -118,7 +118,7 @@ As a node operator you can participate to the network in multiple ways.
 | ------------ | ------  | ---------| --------------  | -------------- |
 | description  | non-validator | all of watcher + publish to archive | all of watcher + active participation in consensus (submit proposals for the transaction set to include in the next ledger) | basic validator + publish to archive |
 | submits transactions | yes | yes | yes | yes |
-| supports horizon | yes | yes | yes | yes |
+| supports frontier | yes | yes | yes | yes |
 | participates in consensus | no | no | yes | yes |
 | helps other nodes to catch up and join the network | no | yes | no | yes |
 
@@ -140,7 +140,7 @@ messages will look like they came from you.
 
 Generate a key pair like this:
 
-`$ stellar-core --genseed`
+`$ digitalbits-core --genseed`
 the output will look like
 ```
 Secret seed: SBAAOHEU4WSWX6GBZ3VOXEGQGWRBJ72ZN3B3MFAJZWXRYGDIWHQO37SY
@@ -159,34 +159,34 @@ Tell other people your public key (GDMTUTQ... ) so people can add it to their `Q
 If you don't include a `NODE_SEED` or set `NODE_IS_VALIDATOR=true`, you will still
 watch SCP and see all the data in the network but will not send validation messages.
 
-See a [list of other validators](https://github.com/stellar/docs/blob/master/validators.md).
+See a [list of other validators](https://github.com/digitalbitsorg/docs/blob/master/validators.md).
 
 ## Database
-Stellar-core stores the state of the ledger in a SQL database. This DB should 
+Digitalbits-core stores the state of the ledger in a SQL database. This DB should 
 either be a SQLite database or, for larger production instances, a separate 
 PostgreSQL server. For how to specify the database, 
-see [example config](https://github.com/stellar/stellar-core/blob/master/docs/stellar-core_example.cfg).
+see [example config](https://github.com/digitalbitsorg/digitalbits-core/blob/master/docs/digitalbits-core_example.cfg).
 
-When running stellar-core for the first time, you must initialize the database:
+When running digitalbits-core for the first time, you must initialize the database:
 
-`$ stellar-core --newdb`
+`$ digitalbits-core --newdb`
 
 This command will initialize the database and then exit. You can also use this 
 command if your DB gets corrupted and you want to restart it from scratch. 
 
 ## Buckets
-Stellar-core stores a duplicate copy of the ledger in the form of flat XDR files 
+Digitalbits-core stores a duplicate copy of the ledger in the form of flat XDR files 
 called "buckets." These files are placed in a directory specified in the config 
 file as `BUCKET_DIR_PATH`, which defaults to `buckets`. The bucket files are used
  for hashing and transmission of ledger differences to history archives. This 
  directory must be on the same file system as the configured temporary 
  directory `TMP_DIR_PATH`. For the most part, the contents of both directories 
-can be ignored--they are managed by stellar-core, but they should be stored on 
+can be ignored--they are managed by digitalbits-core, but they should be stored on 
 a fast local disk with sufficient space to store several times the size of the 
 current ledger. 
 
 ## History archives
-Stellar-core normally interacts with one or more "history archives," which are 
+DigitalBits-core normally interacts with one or more "history archives," which are 
 configurable facilities for storing and retrieving flat files containing history 
 checkpoints: bucket files and history logs. History archives are usually off-site 
 commodity storage services such as Amazon S3, Google Cloud Storage, 
@@ -194,10 +194,10 @@ Azure Blob Storage, or custom SCP/SFTP/HTTP servers.
 
 Use command templates in the config file to give the specifics of which 
 services you will use and how to access them. 
-The [example config](https://github.com/stellar/stellar-core/blob/master/docs/stellar-core_example.cfg) 
+The [example config](https://github.com/digitalbitsorg/digitalbits-core/blob/master/docs/digitalbits-core_example.cfg) 
 shows how to configure a history archive through command templates. 
 
-While it is possible to run a stellar-core node with no configured history 
+While it is possible to run a digitalbits-core node with no configured history 
 archives, it will be _severely limited_, unable to participate fully in a 
 network, and likely unable to acquire synchronization at all. At the very 
 least, if you are joining an existing network in a read-only capacity, you 
@@ -209,7 +209,7 @@ Archive sections can also be configured with `put` and `mkdir` commands to
  cause the instance to publish to that archive.
 
 The very first time you want to use your archive, you need to initialize it with:
-`$ stellar-core --newhist <historyarchive>`
+`$ digitalbits-core --newhist <historyarchive>`
 
 before starting your node.
 
@@ -259,7 +259,7 @@ For more information look at [`docs/versioning.md`](../versioning.md).
 # Quorum
 
 ## A brief explanation
-An important distinction in Stellar compared to traditional quorum based
+An important distinction in DigitalBits compared to traditional quorum based
 networks is that validators that form the network do not necessarily share
  the same configuration of what a quorum is.
 Quorum set represents the configuration of a specific node, where as quorum
@@ -478,9 +478,9 @@ Set the `DATABASE` config variable to your choice of database.
 
 Run:
 
-1. `$ stellar-core --newdb`
+1. `$ digitalbits-core --newdb`
   - if you need to initialize the database
-2. `$ stellar-core`
+2. `$ digitalbits-core`
   - to start the node
 
 ## Starting a new network
@@ -494,13 +494,13 @@ Set the `DATABASE` config variables on each node to your choice of database.
 
 Run:
 
-1. `$ stellar-core --newhist <historyarchive>`
+1. `$ digitalbits-core --newhist <historyarchive>`
   - to initialize every history archive you are putting to (be sure to not push to the same archive from different nodes).
-2. `$ stellar-core --newdb`
+2. `$ digitalbits-core --newdb`
   - to initialize the database on each node. 
-3. `$ stellar-core --forcescp`
+3. `$ digitalbits-core --forcescp`
   - to set a flag to force each node to start SCP immediatly rather than wait to hear from the network. 
-4. `$ stellar-core` 
+4. `$ digitalbits-core` 
   - on each node to start it.
 
 ## Upgrading network settings
@@ -509,9 +509,9 @@ Read the section on [`network-configuration`](admin.md#network-configuration) fo
 
 Example here is to upgrade the protocol version to version 9 on January-31-2018.
 
-1. `$ stellar-core -c 'upgrades?mode=set&upgradetime=2018-01-31T20:00:00Z&protocolversion=9'`
+1. `$ digitalbits-core -c 'upgrades?mode=set&upgradetime=2018-01-31T20:00:00Z&protocolversion=9'`
 
-2. `$ stellar-core -c info`
+2. `$ digitalbits-core -c info`
 At this point `info` will tell you that the node is setup to vote for this upgrade:
 ```
       "status" : [
@@ -521,7 +521,7 @@ At this point `info` will tell you that the node is setup to vote for this upgra
 
 # Understanding the availability and health of your instance
 ## General info
-Run `$ stellar-core --c 'info'`
+Run `$ digitalbits-core --c 'info'`
 The output will look something like
 ```
    "info" : {
@@ -532,7 +532,7 @@ The output will look something like
          "hash" : "f3c3424b85c004ebea1ae25991cf2ff902b46a5fea3bce1850c032118cd4567c",
          "num" : 474367
       },
-      "network" : "Public Global Stellar Network ; September 2015",
+      "network" : "Public Global DigitalBits Network ; September 2015",
       "numPeers" : 12,
       "protocol_version" : 1,
       "quorum" : {
@@ -554,7 +554,7 @@ Key fields to watch for:
  * `quorum` : summary of the quorum information for this node (see below)
 
 ## Quorum Health
-Run `$ stellar-core --c 'quorum'`
+Run `$ digitalbits-core --c 'quorum'`
 The output looks something like
 ```
 "474313" : {
@@ -567,7 +567,7 @@ The output looks something like
          "phase" : "EXTERNALIZE",
          "value" : {
             "t" : 5,
-            "v" : [ "lab1", "lab2", "lab3", "donovan", "GDVFV", "nelisky1", "nelisky2" ]
+            "v" : [ "lab1", "lab2", "lab3", "john", "GDVFV", "smith1", "smith2" ]
          }
 ```
 The key entries to watch are:
@@ -585,7 +585,7 @@ as a whole will not be able to reach consensus (and the opposite is true, the ne
 may fail because of a different set of validators failing).
 
 You can get a sense of the quorum set health of a different node by doing
-`$ stellar-core --c 'quorum?node=$sdf1` or `$ stellar-core --c 'quorum?node=@GABCDE` 
+`$ digitalbits-core --c 'quorum?node=$sdf1` or `$ digitalbits-core --c 'quorum?node=@GABCDE` 
 
 You can get a sense of the general health of the network by looking at the quorum set
 health of all nodes.
@@ -602,7 +602,7 @@ too much when you turn off your validator for maintenance and that your validato
 will continue to operate as part of the network when it comes back up.
 
 If you are changing some settings that may impact network wide settings, such as
-upgrading to a new version of stellar-core that supports a new version of the
+upgrading to a new version of digitalbits-core that supports a new version of the
 protocol or if you're updating other network wide settings, review the
 section "Important notes on network wide settings".
 
@@ -621,7 +621,7 @@ We recommend performing the following steps in order (once per machine if you
 # Notes
 
 It can take up to 5 or 6 minutes to sync to the network when you start up. Most 
-of this syncing time is simply stellar-core waiting for the next history 
+of this syncing time is simply digitalbits-core waiting for the next history 
 checkpoint to be made in a history archive it is reading from.
 
 ## Additional documentation
@@ -631,7 +631,7 @@ This directory contains the following additional documentation:
 * [testnet.md](./testnet.md) is a short tutorial demonstrating how to
   configure and run a short-lived, isolated test network.
 
-* [architecture.md](https://github.com/stellar/stellar-core/blob/master/docs/architecture.md) 
-  describes how stellar-core is structured internally, how it is intended to be 
+* [architecture.md](https://github.com/digitalbitsorg/digitalbits-core/blob/master/docs/architecture.md) 
+  describes how digitalbits-core is structured internally, how it is intended to be 
   deployed, and the collection of servers and services needed to get the full 
   functionality and performance.

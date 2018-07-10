@@ -1,18 +1,18 @@
 dist: trusty
 language: cpp
 sudo: false
-
 compiler:
   - clang
   - gcc
-
+env:
+  global: CLOUDSMITH_API_KEY=$CLOUDSMITH_API_KEY
 addons:
-  postgresql: "9.3"
+  postgresql: '9.3'
   apt:
     sources:
-    - llvm-toolchain-trusty-3.5
-    - llvm-toolchain-trusty-5.0
-    - ubuntu-toolchain-r-test
+      - llvm-toolchain-trusty-3.5
+      - llvm-toolchain-trusty-5.0
+      - ubuntu-toolchain-r-test
     packages:
     - autoconf
     - automake
@@ -30,17 +30,16 @@ addons:
     - build-essential
     - rpm
 
-script: travis_wait 60 ./travis-build.sh
-
+cript: travis_wait 60 ./travis-build.sh
 cache:
   directories:
-    - $HOME/.ccache
-    - .libs
-
+  - "$HOME/.ccache"
+  - ".libs"
 notifications:
   email: false
   slack:
-    secure: YV6WSA6tdswz7dvDw9f/8VF5Lb5E5dWNfnVYmPePqY/4guvCxtgLtK3ciqc/Z/+s6pnAgWCxNkL1TXcxkvQ13TZCnYLGz3gSpB0N1WF9hRoWPDVVlthUma7HwQYaWQcAXA5IkrfXfSN9PoJ4dtTWfFwSeBj4aIM5mzV/m6pOMXfOx1+7LxOXIonFrguHEr9zpU6SDmo7yYuk6bsCSNTqfFbYZtqApUip+PxhL0kRW2pLYjLVUOXxj+Pgt85uyZbcD7KmEjWzgITu/Emlg/Nwcy3QnPheeAg2mucI/8PvJ5UOCi1I7Pp8nSt8iJe5nXzkhlffKw06fM2IT2u4Ui31NY8ZK0zxXHfhR6Cdt5guRJe8/rXXa/7mALflErx1E5C2CMN+aXi3RmLmNJbHhg0ZjacI7WRuAJBZlPQ1MtqQEo/19BBjUk7MDRoG9e/vt9FROxHKMFaEUw9Qalclmpw0Mpgr8LGkqg8aNG1s6iq43qC8G7BPsIdEy2EG/t79dq+KKdeueOUHjkyHxTyiRHR23GvVHc7oX37+qjfw/EGwOR928XAYss6jxHbBYfxZwouYwQNtRlEEN6zlT0j/ApSANveMdjIgAOLj1+FLAKeuPw/blYko9XFZatBNiiVtlx0AqA4yBAwUnucIDgYyjMMK4B2ymxWJwvELwv9EJD8XaiY=
+    secure: a8rcL4V8xMB9t10t/izM3lMUN7xoXGW29HB885WaeBH/37q8y3l/m6bnIcCDAQUmt1QsentoEGSL1w/eCroM8GSTNabF7czVBn1zhLOFJ4k33jxgoK1fPBjYTE0U/IXZLzXJvD/NDL/jZzTuA4Gd+4L2I6UThN8bEmHVz/Y1rSOvoelst87xdZ4aRnvEWoYDhtZdJW3IUvivRf4iLB79VGFjxSp+uJe/MNi5Pf2V/deOb+peXpMiaSqM/xdT5yVnp/EI8n0qYNaA8EHGNgM7OGP7IRd6uBPmCsOP1iJoY+Y3ZkfuGlFZiRETJukMkuhLjjS+nL6n/DLcN2452pVsxJz8nNoa/2sd3ouJygYmmqGJ8h/FNLrBP+7OlH/R4y5LL1e8l7U1MgVfvUqFriOykcBMlUFjgbCgDJMJ1UdaHorvZ+9YQtkthHdmG43Y3KkxKzMYPd7cbQZrBaVAozgV+ipLdkT2ssppqjV/JyY6vs+SIHA9x46Rr3NZdaN8eVInYOdKliTjsxXbhaa6sHOs8YEPEULtyPpPi62ZwraWKJ1X149uJn78Yd1r0+S4r39u0k7sQuZ+c09Ftci8R66Wqvwm32cj3USM2x2lSHhZctsDEnGdCJxrWX153wfeqpat0prYVGhD0mHobwEhP2ipajvh3TbwXkpeAASa5eeEJJE=
+
 
 before_install:
   - export GEM_HOME=$HOME/.gem

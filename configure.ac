@@ -6,7 +6,7 @@
 # of this distribution or at http://www.apache.org/licenses/LICENSE-2.0
 
 AC_PREREQ([2.68])
-AC_INIT([stellar-core],[0.1],[],[],[http://www.stellar.org])
+AC_INIT([digitalbits-core],[0.1],[],[],[http://www.digitalbits.io])
 # tar-ustar is required for long file names when libsodium is bundled
 AM_INIT_AUTOMAKE([-Wall -Wextra -Wconversion subdir-objects tar-ustar silent-rules])
 AC_CONFIG_SRCDIR([configure.ac])
@@ -48,7 +48,7 @@ AX_APPEND_COMPILE_FLAGS([-pthread])
 
 AC_ARG_ENABLE([sdfprefs],
     AS_HELP_STRING([--enable-sdfprefs],
-        [Enable build settings preferred by Stellar developers]))
+        [Enable build settings preferred by DigitalBits developers]))
 
 AS_IF([test xyes = "x$enable_sdfprefs"],
             [AM_SILENT_RULES([yes])

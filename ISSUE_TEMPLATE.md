@@ -1,13 +1,13 @@
 # Before creating an issue
- * check the [documentation](https://www.stellar.org/developers/)
- * ask for help [from the community](https://www.stellar.org/community/)
+ * check the [documentation](https://developer.digitalbits.io/)
+ * ask for help [from the community](https://developer.digitalbits.io/community/)
 
 # Issue type
   bug/feature request/documentation/...
 
 # Version found
   * git hash of the version you're running `git rev-parse HEAD`
-  * version returned by `./stellar-core --version`
+  * version returned by `./digitalbits-core --version`
 
 # Your environment and setup
   * Operating System name and version (usually `uname -a`)

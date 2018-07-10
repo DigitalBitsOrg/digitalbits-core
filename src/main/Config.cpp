@@ -53,8 +53,8 @@ Config::Config() : NODE_SEED(SecretKey::random())
     FAILURE_SAFETY = -1;
     UNSAFE_QUORUM = false;
 
-    LOG_FILE_PATH = "stellar-core.%datetime{%Y.%M.%d-%H:%m:%s}.log";
-    BUCKET_DIR_PATH = "buckets";
+    LOG_FILE_PATH = "/var/log/digitalbits-core.%datetime{%Y.%M.%d-%H:%m:%s}.log";
+    BUCKET_DIR_PATH = "/var/lib/digitalbits/buckets";
 
     TESTING_UPGRADE_DESIRED_FEE = LedgerManager::GENESIS_LEDGER_BASE_FEE;
     TESTING_UPGRADE_RESERVE = LedgerManager::GENESIS_LEDGER_BASE_RESERVE;

@@ -33,7 +33,7 @@ g++ -v
 llvm-symbolizer --version || true
 
 # Create postgres databases; uncomment #PGPASSWORD if testing outside of travis & drop tables every time
-export PGUSER=postgres #PGPASSWORD=temp123
+export PGUSER=postgres PGPASSWORD=temp123
 psql -c "create database test;"
 for i in $(seq 0 15)
 do

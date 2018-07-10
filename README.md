@@ -1,18 +1,18 @@
-[![Build Status](https://travis-ci.org/stellar/stellar-core.svg?branch=auto)](https://travis-ci.org/stellar/stellar-core)
+[![Build Status](https://travis-ci.com/digitalbitsorg/digitalbits-core.svg?branch=auto)](https://travis-ci.com/digitalbitsorg/digitalbits-core)
 
 
-# stellar-core
+# digitalbits-core
 
-Stellar-core is a replicated state machine that maintains a local copy of a cryptographic ledger and processes transactions against it, in consensus with a set of peers.
-It implements the [Stellar Consensus Protocol](https://github.com/stellar/stellar-core/blob/master/src/scp/readme.md), a _federated_ consensus protocol.
+DigitalBits-core is a replicated state machine that maintains a local copy of a cryptographic ledger and processes transactions against it, in consensus with a set of peers.
+It implements the [Stellar Consensus Protocol](https://github.com/digitalbitsorg/digitalbits-core/blob/master/src/scp/readme.md), a _federated_ consensus protocol.
 It is written in C++11 and runs on Linux, OSX and Windows.
-Learn more by reading the [overview document](https://github.com/stellar/stellar-core/blob/master/docs/readme.md).
+Learn more by reading the [overview document](https://github.com/digitalbitsorg/digitalbits-core/blob/master/docs/readme.md).
 
 # Documentation
 
 Documentation of the code's layout and abstractions, as well as for the
 functionality available, can be found in
-[`./docs`](https://github.com/stellar/stellar-core/tree/master/docs).
+[`./docs`](https://github.com/digitalbitsorg/digitalbits-core/tree/master/docs).
 
 # Installation
 
@@ -24,7 +24,7 @@ See [Contributing](./CONTRIBUTING.md)
 
 # Reporting issues
 
-Software has bugs, or maybe you have an idea for a change in stellar-core.
+Software has bugs, or maybe you have an idea for a change in digitalbits-core.
 
 Checklist
  1. do a search of issues in case there is one already tracking the one you ran into.
@@ -38,26 +38,26 @@ For bugs being opened/re-opened, simply paste and fill the [Bug-Template.md](./B
 # Running tests
 
 run tests with:
-  `src/stellar-core --test`
+  `src/digitalbits-core --test`
 
 run one test with:
-  `src/stellar-core --test  testName`
+  `src/digitalbits-core --test  testName`
 
 run one test category with:
-  `src/stellar-core --test '[categoryName]'`
+  `src/digitalbits-core --test '[categoryName]'`
 
 Categories (or tags) can be combined: AND-ed (by juxtaposition) or OR-ed (by comma-listing).
 
 Tests tagged as [.] or [hide] are not part of the default test test.
 
 supported test options can be seen with
-  `src/stellar-core --test --help`
+  `src/digitalbits-core --test --help`
 
 display tests timing information:
-  `src/stellar-core --test -d yes '[categoryName]'`
+  `src/digitalbits-core --test -d yes '[categoryName]'`
 
 xml test output (includes nested section information):
-  `src/stellar-core --test -r xml '[categoryName]'`
+  `src/digitalbits-core --test -r xml '[categoryName]'`
 
 # Running tests against postgreSQL
 
@@ -84,8 +84,8 @@ are appropriately set, then run the following from bash:
 We adopt the convention of tagging a stress-test for subsystem foo as [foo-stress][stress][hide].
 
 Then, running
-* `stellar-core --test [stress]` will run all the stress tests,
-* `stellar-core --test [foo-stress]` will run the stress tests for subsystem foo alone, and
-* neither `stellar-core --test` nor `stellar-core --test [foo]` will run stress tests.
+* `digitalbits-core --test [stress]` will run all the stress tests,
+* `digitalbits-core --test [foo-stress]` will run the stress tests for subsystem foo alone, and
+* neither `digitalbits-core --test` nor `digitalbits-core --test [foo]` will run stress tests.
 
 

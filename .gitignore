@@ -38,7 +38,7 @@
 /aclocal.m4
 /autom4te.cache
 /build
-/src/stellar-core
+/src/digitalbits-core
 /buckets
 /compile
 /config.h
@@ -58,8 +58,8 @@
 /test-driver
 /stamp-h1
 /ylwrap
-/docs/stellar-core.1
-/docs/stellar-core.1.in
+/docs/digitalbits-core.1
+/docs/digitalbits-core.1.in
 /src/Makefile
 /src/Makefile.in
 /lib/Makefile

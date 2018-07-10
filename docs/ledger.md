@@ -2,7 +2,7 @@
 title: Ledger
 ---
 
-- **Ledger**: A ledger is the state of the distributed Stellar database at a
+- **Ledger**: A ledger is the state of the distributed DigitalBits database at a
   particular point in time. It is composed of a set of _ledger entries_,
   including (1) accounts and their balances, (2) buy and sell offers, (3) and
   trust lines, as well as a _ledger header_ that records some additional meta
@@ -18,7 +18,7 @@ title: Ledger
   own hash. (See [`src/xdr/Stellar-ledger.x`](/src/xdr/Stellar-ledger.x))
 
 
-`Stellar-core` maintains the content of the latest ledger and of the ledger
+`Digitalbits-core` maintains the content of the latest ledger and of the ledger
 chain in a number of different representations in order to satisfy competing
 performance needs.
 
@@ -47,7 +47,7 @@ performance needs.
 	concatenating all the entries, it is not the same value since the bucket
 	list deduplicates changed entries incrementally.
 
- 4. Finally, `stellar-core` can be configured to upload detailed historical
+ 4. Finally, `digitalbits-core` can be configured to upload detailed historical
     records of all the transactions, including all or most of the ledgers'
     content, to persistent long-term storage. This record can be used to audit
     the full ledger chain's history, and is used to catch-up new nodes and nodes

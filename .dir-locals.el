@@ -1,4 +1,4 @@
-; This file sets emacs variables that are helpful for editing stellar-core
+; This file sets emacs variables that are helpful for editing digitalbits-core
 
 ((c-mode . ((indent-tabs-mode .  nil)))
  (c++-mode . ((indent-tabs-mode .  nil)))

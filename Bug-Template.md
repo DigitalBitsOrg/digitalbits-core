@@ -4,7 +4,7 @@
 
 # What I was trying to do
 
-*example: I tried to submit a transaction containing `createAccount` and then stellar-core crashed*
+*example: I tried to submit a transaction containing `createAccount` and then digitalbits-core crashed*
 
 *include actual example that causes the problem, if applicable (json or base64 encoded transaction for example)*
 
@@ -56,7 +56,7 @@ example:
 
 ## Logs around the time of the issue
 
-*log location is normally defined in your log file something like `stellar-core.log`*
+*log location is normally defined in your log file something like `digitalbits-core.log`*
 
 If you can reproduce the issue locally, it's even better - gather the logs in debug (more verbose) by setting the log level in your configuration file with:
 

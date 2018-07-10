@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stellar-core", "stellar-core.vcxproj", "{916B91AB-A300-422C-B9C2-D683924DC109}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "digitalbits-core", "digitalbits-core.vcxproj", "{916B91AB-A300-422C-B9C2-D683924DC109}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libsodium", "..\..\lib\libsodium\builds\msvc\vs2017\libsodium\libsodium.vcxproj", "{A185B162-6CB6-4502-B03F-B56F7699A8D9}"
 EndProject

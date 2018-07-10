@@ -13,8 +13,8 @@ using namespace stellar;
 TEST_CASE("Serialization round-trip", "[history][serialize]")
 {
     std::vector<std::string> testFiles = {
-        "stellar-history.testnet.6714239.json",
-        "stellar-history.livenet.15686975.json"};
+        "digitalbits-history.testnet.6714239.json",
+        "digitalbits-history.livenet.15686975.json"};
     for (auto const& fn : testFiles)
     {
         std::string fnPath = "testdata/";

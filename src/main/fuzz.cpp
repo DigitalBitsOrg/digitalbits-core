@@ -34,7 +34,7 @@
  *     for the external fuzzer's corpus.
  *
  *   - In --fuzz mode it reads back a file and appplies it to a pair of of
- *     stellar-cores in loopback mode, cranking the I/O loop to simulate
+ *     digitalbits-cores in loopback mode, cranking the I/O loop to simulate
  *     receiving the messages one by one. It exits when it's read the input.
  *     This is the mode the external fuzzer will run its mutant inputs through.
  *
@@ -97,7 +97,7 @@ fuzz(std::string const& filename, el::Level logLevel,
 {
     Logging::setFmt("<fuzz>", false);
     Logging::setLogLevel(logLevel, nullptr);
-    LOG(INFO) << "Fuzzing stellar-core " << STELLAR_CORE_VERSION;
+    LOG(INFO) << "Fuzzing digitalbits-core " << STELLAR_CORE_VERSION;
     LOG(INFO) << "Fuzz input is in " << filename;
 
     Config cfg1, cfg2;

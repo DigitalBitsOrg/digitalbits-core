@@ -69,7 +69,7 @@ PutHistoryArchiveStateWork::onSuccess()
             addWork<PutRemoteFileWork>(mLocalFilename, seqName, mArchive);
         mPutRemoteFileWork->addWork<MakeRemoteDirWork>(seqDir, mArchive);
 
-        // Also put it in the .well-known/stellar-history.json file
+        // Also put it in the .well-known/digitalbits-history.json file
         auto wkName = HistoryArchiveState::wellKnownRemoteName();
         auto wkDir = HistoryArchiveState::wellKnownRemoteDir();
         auto wkWork =

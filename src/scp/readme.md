@@ -17,7 +17,7 @@ methods for handling SCP-generated events, and calling SCP base-class methods to
 receive incoming messages. The messages making up the protocol are defined in
 XDR, in the file [Stellar-SCP.x](../xdr/Stellar-SCP.x)
 
-The `stellar-core` program has a single subclass of SCP called
+The `digitalbits-core` program has a single subclass of SCP called
 [Herder](../herder), which gives a specific interpretation to "slot" and
 "value", and connects SCP up with a specific broadcast communication medium
 ([Overlay](../overlay)) and specific replicated state machine

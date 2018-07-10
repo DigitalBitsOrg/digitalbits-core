@@ -26,7 +26,7 @@ namespace stellar
 // which means that CatchupWork will get latest checkpoint from history archive
 // and catchup to that instead of destination ledger. This is usefull when
 // doing offline commandline catchups with --catchup-complete, --catchup-at,
-// --catchup-to and --catchup-recent arguments to stellar-core.
+// --catchup-to and --catchup-recent arguments to digitalbits-core.
 class CatchupConfiguration
 {
   public:
