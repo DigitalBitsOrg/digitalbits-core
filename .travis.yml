@@ -57,12 +57,16 @@ deploy:
   skip_cleanup: true
   script: "./deploy_deb.sh"
   on:
-    branch: master
+    branch: dev
     
  deploy:
   provider: script
   skip_cleanup: true
   script: "./deploy_rpm.sh"
   on:
-    branch: master
+    branch: dev
+
+
+
+
 
