@@ -50,10 +50,18 @@ before_deploy:
   - sudo gem install fpm
   - pyenv global 2.7
   - pip install cloudsmith-cli
+  - sudo apt install rpm
   
 deploy:
   provider: script
   skip_cleanup: true
-  script: "./deploy-deb.sh"
+  script: "./deploy_deb.sh"
+  on:
+    branch: dev
+    
+ deploy:
+  provider: script
+  skip_cleanup: true
+  script: "./deploy_rpm.sh"
   on:
     branch: dev
