@@ -8,7 +8,6 @@ compiler:
 env:
   global:
      CLOUDSMITH_API_KEY=$CLOUDSMITH_API_KEY
-    - secure: "really-long-base64-hash-variable"
 
 addons:
   postgresql: "9.3"
