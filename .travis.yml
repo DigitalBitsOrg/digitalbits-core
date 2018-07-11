@@ -52,4 +52,4 @@ deploy:
   skip_cleanup: true
   script: "./build_deploy.sh"
   on:
-    branch: dev
+    branch: OS-16
