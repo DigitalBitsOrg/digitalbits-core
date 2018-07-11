@@ -65,3 +65,4 @@ deploy:
   script: "./deploy_rpm.sh"
   on:
     branch: master
+
