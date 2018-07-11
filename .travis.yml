@@ -47,9 +47,4 @@ before_deploy:
   - pip install cloudsmith-cli
   - sudo apt install rpm
   
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: "./build_deploy.sh"
-  on:
-    branch: OS-16
+  script: bash build_deploy.sh
