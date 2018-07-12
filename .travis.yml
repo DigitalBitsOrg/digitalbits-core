@@ -46,3 +46,10 @@ before_deploy:
   - pyenv global 2.7
   - pip install cloudsmith-cli
   - sudo apt install rpm
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: ./build_deploy.sh
+  on:
+    branch: OS-16
