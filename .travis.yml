@@ -8,7 +8,6 @@ compiler:
 addons:
   postgresql: "9.3"
   apt:
-    update: true
     sources:
     - llvm-toolchain-trusty-3.5
     - llvm-toolchain-trusty-5.0
@@ -27,9 +26,6 @@ addons:
     - pkg-config
     - clang-format-5.0
     - pandoc
-    - ruby-dev
-    - build-essential
-    - rpm
 
 script: travis_wait 60 ./travis-build.sh
 
