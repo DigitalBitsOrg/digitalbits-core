@@ -14,4 +14,4 @@ pwd
 
 ls
 cloudsmith push deb digitalbits/dbtest/ubuntu/trusty digitalbits-core_0.1.0-1_amd64.deb
-cloudsmith push deb digitalbits/dbtest/centos/ digitalbits-core-0.1.0-1.x86_64.rpm
+cloudsmith push rpm digitalbits/dbtest/el/7 digitalbits-core-0.1.0-1.x86_64.rpm 
