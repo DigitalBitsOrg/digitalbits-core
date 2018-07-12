@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo gem install fpm
 
 echo "Create deb package..."
 
