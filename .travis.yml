@@ -31,7 +31,6 @@ addons:
     - build-essential
     - rpm
 
-install: gem install fpm
 script: travis_wait 60 ./travis-build.sh
 
 cache:
