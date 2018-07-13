@@ -26,13 +26,8 @@ addons:
     - pkg-config
     - clang-format-5.0
     - pandoc
-    - ruby
-    - ruby-dev
-    - rubygems
     - build-essential
     - rpm
-    
-    
 
 script: travis_wait 60 ./travis-build.sh
 
@@ -46,11 +41,13 @@ notifications:
   slack:
     secure: YV6WSA6tdswz7dvDw9f/8VF5Lb5E5dWNfnVYmPePqY/4guvCxtgLtK3ciqc/Z/+s6pnAgWCxNkL1TXcxkvQ13TZCnYLGz3gSpB0N1WF9hRoWPDVVlthUma7HwQYaWQcAXA5IkrfXfSN9PoJ4dtTWfFwSeBj4aIM5mzV/m6pOMXfOx1+7LxOXIonFrguHEr9zpU6SDmo7yYuk6bsCSNTqfFbYZtqApUip+PxhL0kRW2pLYjLVUOXxj+Pgt85uyZbcD7KmEjWzgITu/Emlg/Nwcy3QnPheeAg2mucI/8PvJ5UOCi1I7Pp8nSt8iJe5nXzkhlffKw06fM2IT2u4Ui31NY8ZK0zxXHfhR6Cdt5guRJe8/rXXa/7mALflErx1E5C2CMN+aXi3RmLmNJbHhg0ZjacI7WRuAJBZlPQ1MtqQEo/19BBjUk7MDRoG9e/vt9FROxHKMFaEUw9Qalclmpw0Mpgr8LGkqg8aNG1s6iq43qC8G7BPsIdEy2EG/t79dq+KKdeueOUHjkyHxTyiRHR23GvVHc7oX37+qjfw/EGwOR928XAYss6jxHbBYfxZwouYwQNtRlEEN6zlT0j/ApSANveMdjIgAOLj1+FLAKeuPw/blYko9XFZatBNiiVtlx0AqA4yBAwUnucIDgYyjMMK4B2ymxWJwvELwv9EJD8XaiY=
 
+before_install:
+  - gem install --no-ri --no-rdoc fpm
+  
 before_deploy: 
   - pyenv global 2.7
   - pip install cloudsmith-cli
-  - sudo gem install --no-ri --no-rdoc fpm
-
+  
 deploy:
   provider: script
   skip_cleanup: true
