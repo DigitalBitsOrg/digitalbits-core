@@ -1,5 +1,5 @@
 #!/bin/bash
-
+PATH=/path/to/gem/bin:$PATH
 echo "Create deb package..."
 
 fpm -s dir -t deb -C src --name digitalbits-core --version 0.1.0 --iteration 1 --depends debian_dependency1 --description "Digitalbits-core" .
