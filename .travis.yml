@@ -26,6 +26,13 @@ addons:
     - pkg-config
     - clang-format-5.0
     - pandoc
+    - ruby
+    - ruby-dev
+    - rubygems
+    - build-essential
+    - rpm
+    
+    
 
 script: travis_wait 60 ./travis-build.sh
 
@@ -42,9 +49,7 @@ notifications:
 before_deploy: 
   - pyenv global 2.7
   - pip install cloudsmith-cli
-  - sudo apt-get install ruby ruby-dev rubygems build-essential 
   - sudo gem install --no-ri --no-rdoc fpm
-  - sudo apt-get install rpm
 
 deploy:
   provider: script
