@@ -42,6 +42,9 @@ notifications:
 before_deploy: 
   - pyenv global 2.7
   - pip install cloudsmith-cli
+  - apt-get install ruby ruby-dev rubygems build-essential 
+  - gem install --no-ri --no-rdoc fpm
+  - apt-get install rpm
 
 deploy:
   provider: script
