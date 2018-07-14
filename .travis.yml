@@ -30,7 +30,7 @@ addons:
     - build-essential
     - rpm
 
-script: travis_wait 60 ./travis-build.sh
+#script: travis_wait 60 ./travis-build.sh
 
 cache:
   directories:
