@@ -32,10 +32,10 @@ addons:
 
 #script: travis_wait 60 ./travis-build.sh
 
-cache:
-  directories:
-    - $HOME/.ccache
-    - .libs
+#cache:
+#  directories:
+#    - $HOME/.ccache
+#    - .libs
 
 notifications:
   email: false
