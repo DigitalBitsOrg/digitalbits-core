@@ -51,6 +51,8 @@ before_install:
   - fpm --version
   - fpm --help
   - export PATH=$(ruby -r rubygems -e 'puts Gem.dir'):$PATH
+  - fpm -s dir -t deb -C src --name digitalbits-core --version 0.1.0 --iteration 1 --depends debian_dependency1 --description "Digitalbits-core" .
+  - fpm -s dir -t rpm -C src --name digitalbits-core --version 0.1.0 --iteration 1 --depends  redhat_dependency1 --description "digitalbits-core" .
   
 before_deploy: 
   - pyenv global 2.7
