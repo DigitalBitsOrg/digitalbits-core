@@ -47,7 +47,7 @@ before_install:
   - export GEM_PATH=$HOME/.gem
   - rvm get stable --auto-dotfiles
   - rvm install 2.3.1
-  - gem install fpm
+  - gem install --no-ri --no-rdoc fpm
   
 before_deploy: 
   - pyenv global 2.7
