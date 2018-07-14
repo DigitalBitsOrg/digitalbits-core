@@ -49,6 +49,7 @@ before_install:
   - rvm install 2.3.1
   - gem install --no-ri --no-rdoc fpm
   - fpm --version
+  - fpm --help
   - export PATH=$(ruby -rubygems -e 'puts Gem.dir'):$PATH
   
 before_deploy: 
