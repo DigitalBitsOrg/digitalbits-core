@@ -1,4 +1,7 @@
 #!/bin/bash
+
+export GEM_HOME=$HOME/.gem
+export GEM_PATH=$HOME/.gem
 PATH=/path/to/gem/bin:$PATH
 echo "Create deb package..."
 
