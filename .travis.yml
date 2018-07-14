@@ -45,11 +45,11 @@ notifications:
 before_install:
   - export GEM_HOME=$HOME/.gem
   - export GEM_PATH=$HOME/.gem
-  - export PATH=$(ruby -rubygems -e 'puts Gem.dir'):$PATH
   - rvm get stable --auto-dotfiles
   - rvm install 2.3.1
   - gem install --no-ri --no-rdoc fpm
   - fpm --version
+  - export PATH=$(ruby -rubygems -e 'puts Gem.dir'):$PATH
   
 before_deploy: 
   - pyenv global 2.7
