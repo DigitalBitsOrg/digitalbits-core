@@ -50,7 +50,7 @@ before_install:
   - gem install --no-ri --no-rdoc fpm
   - fpm --version
   - fpm --help
-  - export PATH=$(ruby -rubygems -e 'puts Gem.dir'):$PATH
+  - export PATH=$(ruby -r rubygems -e 'puts Gem.dir'):$PATH
   
 before_deploy: 
   - pyenv global 2.7
