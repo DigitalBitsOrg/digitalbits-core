@@ -1,9 +1,9 @@
 #!/bin/bash
 
-mkdir -p /usr/local/digitalbits/src \
+mkdir -p /tmp/digitalbits/src \
     && cat /root/.ssh/known_hosts \
-    && git clone --depth 1 --branch master git@github.com:DigitalBitsOrg/stellar-core.git /usr/local/digitalbits/src \
-    && cd /usr/local/digitalbits/src \
+    && git clone --depth 1 --branch master git@github.com:DigitalBitsOrg/digitalbits-core.git /tmp/digitalbits/src \
+    && cd /tmp/digitalbits/src \
     && git submodule init \
     && git submodule update \
     && ./autogen.sh \
