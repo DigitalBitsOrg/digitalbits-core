@@ -1,16 +1,6 @@
 #!/bin/bash
 
-mkdir -p /tmp/digitalbits/src \
-    && cat ~/.ssh/known_hosts \
-    && git clone --depth 1 --branch master git@github.com:DigitalBitsOrg/digitalbits-core.git /tmp/digitalbits/src \
-    && cd /tmp/digitalbits/src \
-    && git submodule init \
-    && git submodule update \
-    && ./autogen.sh \
-    && ./configure \
-    && make -j 6 \
-    && mkdir -p /tmp/build
-    && make DESTDIR=/tmp/build install
+make DESTDIR=/tmp/build install
 
 echo "Create deb package..."
 
