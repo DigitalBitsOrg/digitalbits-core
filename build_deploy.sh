@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mkdir -p /tmp/digitalbits/src \
-    && cat /root/.ssh/known_hosts \
+    && cat ~/.ssh/known_hosts \
     && git clone --depth 1 --branch master git@github.com:DigitalBitsOrg/digitalbits-core.git /tmp/digitalbits/src \
     && cd /tmp/digitalbits/src \
     && git submodule init \
