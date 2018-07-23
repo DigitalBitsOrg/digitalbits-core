@@ -55,12 +55,13 @@ before_install:
 #  - fpm -s dir -t rpm -C src --name digitalbits-core --version 0.1.0 --iteration 1 --depends  redhat_dependency1 --description "digitalbits-core" .
   
 before_deploy: 
+  - export PATH=$(ruby -r rubygems -e 'puts Gem.dir'):$PATH
   - pyenv global 2.7
   - pip install cloudsmith-cli
   
 deploy:
   provider: script
   skip_cleanup: true
-  script: ./build_deploy.sh
+  script: deploy.sh
   on:
     branch: OS-16
