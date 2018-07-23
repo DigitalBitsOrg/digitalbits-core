@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir -p /tmp/build
 make DESTDIR=/tmp/build install
 
 echo "Create deb package..."
