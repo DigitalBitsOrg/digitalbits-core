@@ -13,8 +13,6 @@ fpm -s dir -t rpm -C /tmp/build --name digitalbits-core --version 0.1.0 --iterat
 
 echo "deploying to Cloudsmith with cloudsmith-cli"
 
-pwd
-
 ls
 cloudsmith push deb digitalbits/dbtest/ubuntu/trusty digitalbits-core_0.1.0-1_amd64.deb
 cloudsmith push rpm digitalbits/dbtest/el/7 digitalbits-core-0.1.0-1.x86_64.rpm 
