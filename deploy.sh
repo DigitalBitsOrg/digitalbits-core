@@ -3,9 +3,10 @@
 mkdir -p /tmp/build
 make DESTDIR=/tmp/build install
 
-sudo apt-get update -y 
-sudo apt-get install ruby-dev build-essential -y
-sudo gem install fpm
+
+apt-get update -y 
+apt-get install ruby-dev build-essential -y
+gem install fpm
 
 echo "Create deb package..."
 
