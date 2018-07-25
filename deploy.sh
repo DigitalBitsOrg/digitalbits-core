@@ -3,6 +3,10 @@
 mkdir -p /tmp/build
 make DESTDIR=/tmp/build install
 
+sudo apt-get update -y 
+sudo apt-get install ruby-dev build-essential -y
+sudo gem install fpm
+
 echo "Create deb package..."
 
 fpm -s dir -t deb -C /tmp/build --name digitalbits-core --version 0.1.0 --iteration 1 --depends debian_dependency1 --description "Digitalbits-core" .
