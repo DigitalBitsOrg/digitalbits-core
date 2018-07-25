@@ -58,7 +58,9 @@ before_deploy:
   - export PATH=$(ruby -r rubygems -e 'puts Gem.dir'):$PATH
   - pyenv global 2.7
   - pip install cloudsmith-cli
-  
+  - gem install --no-ri --no-rdoc fpm
+  - fpm --version
+
 deploy:
   provider: script
   skip_cleanup: true
