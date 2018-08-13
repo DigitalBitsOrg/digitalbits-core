@@ -1,6 +1,5 @@
 language: cpp
 sudo: false
-
 compiler:
   - clang
   - gcc
@@ -10,7 +9,7 @@ env:
      CLOUDSMITH_API_KEY=$CLOUDSMITH_API_KEY
 
 addons:
-  postgresql: "9.3"
+  postgresql: '9.3'
   apt:
     sources:
     - llvm-toolchain-trusty-3.5
@@ -30,6 +29,7 @@ addons:
     - pkg-config
     - clang-format-5.0
     - pandoc
+
 
 script: travis_wait 60 ./travis-build.sh
 
@@ -64,8 +64,5 @@ deploy:
   script: "./deploy_rpm.sh"
   on:
     branch: dev
-
-
-
 
 

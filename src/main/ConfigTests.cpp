@@ -142,9 +142,9 @@ TEST_CASE("resolve node id", "[config]")
 TEST_CASE("load example configs", "[config]")
 {
     Config c;
-    std::vector<std::string> testFiles = {"stellar-core_example.cfg",
-                                          "stellar-core_standalone.cfg",
-                                          "stellar-core_testnet.cfg"};
+    std::vector<std::string> testFiles = {"digitalbits-core_example.cfg",
+                                          "digitalbits-core_standalone.cfg",
+                                          "digitalbits-core_testnet.cfg"};
     for (auto const& fn : testFiles)
     {
         std::string fnPath = "testdata/";

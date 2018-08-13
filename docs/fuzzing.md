@@ -3,7 +3,7 @@ title: Fuzzing
 ---
 
 This is a little howto on using the [AFL][0] (["American Fuzzy Lop"][1])
-fuzzer with stellar-core. Support for this is still preliminary but it has
+fuzzer with digitalbits-core. Support for this is still preliminary but it has
 already shaken a couple bugs out and will no doubt find more the further down
 this road we go, so you're encouraged to give this a try.
 
@@ -26,7 +26,7 @@ to differentiate runs / explore the control-flow space.
 
 Every run of the program starts anew and is fed a small binary input from the
 corpus. So to make this all work the program has to (a) run quickly and (b) take
-small inputs in binary form. We've modified stellar-core to have a mode for (b)
+small inputs in binary form. We've modified digitalbits-core to have a mode for (b)
 but (a) is still unsatisfactory; the binary-input mode starts up a pair of
 Application objects in loopback configuration, and reads-and-receives a
 StellarMessage into them. This is quite a lot of setup and the fuzzing speed of
@@ -41,7 +41,7 @@ and `afl-gcc` and `afl-clang`, which are compiler-wrappers that instrument
 binaries they compile with the fuzzer's branch-tracking machinery.
 
 
-## Building an instrumented stellar-core
+## Building an instrumented digitalbits-core
 
 Start with a clean workspace, `make clean` or cleaner; then just do `./configure
 --enable-afl && make` and make sure you have not enabled `asan` and `ccache`;
@@ -54,10 +54,10 @@ compiler wrappers.
 The simplest way is `make fuzz`; this will do the following:
 
   - Create a directory `fuzz-testcases` for storing the corpus input
-  - Run `stellar-core --genfuzz fuzz-testcases/fuzz$i.xdr` ten times to produce
+  - Run `digitalbits-core --genfuzz fuzz-testcases/fuzz$i.xdr` ten times to produce
     some basic seed input for the corpus.
   - Create a directory `fuzz-findings` for storing crash-producing inputs.
-  - Run `afl-fuzz` on `stellar-core --fuzz`, using those corpus directories.
+  - Run `afl-fuzz` on `digitalbits-core --fuzz`, using those corpus directories.
 
 You should get a nice old-school textmode TUI to monitor the fuzzer's progress;
 it might be partly hidden depending on the color scheme of your terminal, as it
@@ -65,12 +65,12 @@ makes use of bold color highlighting.
 
 While it runs, it will write new crashes to files in `fuzz-findings`; before
 pouncing on these as definite evidence of a flaw, you should confirm the crash
-by feeding it to an instance of `stellar-core --fuzz` run by hand, elsewhere (in
+by feeding it to an instance of `digitalbits-core --fuzz` run by hand, elsewhere (in
 particular, not fighting for control over tmpdirs with the fuzzer's
-`stellar-core` instances). Often a fuzzer "crash" is just the subprocess hitting
+`digitalbits-core` instances). Often a fuzzer "crash" is just the subprocess hitting
 a ulimit; by default we use an 8GB virtual-address ulimit, but it is still
 possible to exceed this. It is also useful to keep a separate build of
-`stellar-core` in a different directory with `--enable-asan`, or valgrind, in
+`digitalbits-core` in a different directory with `--enable-asan`, or valgrind, in
 order to diagnose crashes.
 
 
@@ -83,7 +83,7 @@ part of staging-tests", here are some directions I think we should take fuzzing:
 
   - Try AFL_NO_VAR_CHECK and see if it speeds things up.
 
-  - Try limiting the instrumentation to `stellar-core` itself, not libsodium,
+  - Try limiting the instrumentation to `digitalbits-core` itself, not libsodium,
     soci, sqlite, medida, and so forth.
 
   - Measure and shave-down the startup path for fuzzing so it's as fast as
@@ -104,7 +104,7 @@ part of staging-tests", here are some directions I think we should take fuzzing:
   - Add a mode -- with a giant red flashing TESTING_ONLY light on it -- that
     makes crypto signatures always pass. A lot of bad fuzzer-input will be
     caught and rejected by mismatched Ed25519 signatures; this is not ideal,
-    as an attacker who figures out how to break `stellar-core` will be able
+    as an attacker who figures out how to break `digitalbits-core` will be able
     to sign their bad input to make it past that check. So we should omit it
     in at least some, if not all, fuzzing modes.
 

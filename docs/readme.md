@@ -2,11 +2,11 @@
 title: Overview
 ---
 
-Stellar is a decentralized, federated peer-to-peer network that allows people to
+DigitalBits is a decentralized, federated peer-to-peer network that allows people to
 send payments in any asset anywhere in the world instantaneously, and with
 minimal fee.
 
-`Stellar-core` is the core component of this network. `Stellar-core` is a C++
+`Digitalbits-core` is the core component of this network. `Digitalbits-core` is a C++
 implementation of the Stellar Consensus Protocol configured to construct a chain
 of ledgers that are guaranteed to be in agreement across all the participating
 nodes at all times.
@@ -16,9 +16,9 @@ guarantee see [`src/scp/readme.md`](/src/scp/readme.md).
 
 
 - [Building & Installing](/INSTALL.md)
-- [Stellar-core administration](software/admin.md)
+- [Digitalbits-core administration](software/admin.md)
 - [Architecture](architecture.md)
-- [Key Concepts](https://www.stellar.org/developers/guides/)
+- [Key Concepts](https://developer.digitalbits.io/guides/)
 - [Integration with other services](integration.md)
 - [Major Components](#major-components)
 - [Supporting Code Directories](#supporting-code-directories)
@@ -39,7 +39,7 @@ source directory and its own dedicated `readme.md`.
   [`src/scp/readme.md`](/src/scp/readme.md)).
 
 * **Herder** is responsible for interfacing between SCP and the rest of
-  `stellar-core`. Herder provides SCP with concrete implementations of the
+  `digitalbits-core`. Herder provides SCP with concrete implementations of the
   methods SCP uses to communicate with peers, to compare values, to determine
   whether values contain valid signatures, and so forth. Herder often
   accomplishes its tasks by delegating to other components
@@ -81,7 +81,7 @@ source directory and its own dedicated `readme.md`.
   state flags. Launches the test suite if requested.
 
 * **src/crypto** contains standard cryptographic routines, including random
-  number generation, hashing, hex encoding and Stellar Key encoding.
+  number generation, hashing, hex encoding and DigitalBits Key encoding.
 
 * **src/util** gathers assorted logging and utility routines.
 
