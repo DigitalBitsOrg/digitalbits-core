@@ -56,7 +56,7 @@ deploy:
   skip_cleanup: true
   script: "./deploy_deb.sh"
   on:
-    branch: dev
+    branch: master
     
 
 
