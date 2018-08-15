@@ -117,7 +117,7 @@ static void
 usage(int err = 1)
 {
     std::ostream& os = err ? std::cerr : std::cout;
-    os << "usage: stellar-core [OPTIONS]\n"
+    os << "usage: digitalbits-core [OPTIONS]\n"
           "where OPTIONS can be any of:\n"
           "      --base64             Use base64 for --printtxn and --signtxn\n"
           "      --catchup-at SEQ     Do a catchup at ledger SEQ, then quit\n"
@@ -131,15 +131,15 @@ usage(int err = 1)
           "                           Use current as SEQ to catchup to "
           "'current'"
           "history checkpoint\n"
-          "      --c                  Send a command to local stellar-core. "
+          "      --c                  Send a command to local digitalbits-core. "
           "try "
           "'--c help' for more information\n"
           "      --conf FILE          Specify a config file ('-' for STDIN, "
-          "default 'stellar-core.cfg')\n"
+          "default 'digitalbits-core.cfg')\n"
           "      --convertid ID       Displays ID in all known forms\n"
           "      --dumpxdr FILE       Dump an XDR file, for debugging\n"
           "      --loadxdr FILE       Load an XDR bucket file, for testing\n"
-          "      --forcescp           Next time stellar-core is run, SCP will "
+          "      --forcescp           Next time digitalbits-core is run, SCP will "
           "start "
           "with the local ledger rather than waiting to hear from the "
           "network.\n"
@@ -298,7 +298,7 @@ catchup(Application::pointer app, uint32_t to, uint32_t count,
                   << " is not newer than last closed ledger"
                   << " - nothing to do";
         LOG(INFO) << "* If you really want to catchup to " << to
-                  << " run stellar-core with --newdb parameter.";
+                  << " run digitalbits-core with --newdb parameter.";
         LOG(INFO) << "*";
         return 2;
     }
@@ -614,7 +614,7 @@ initializeHistories(Config& cfg, vector<string> newHistories)
 static int
 startApp(string cfgFile, Config& cfg)
 {
-    LOG(INFO) << "Starting stellar-core " << STELLAR_CORE_VERSION;
+    LOG(INFO) << "Starting digitalbits-core " << STELLAR_CORE_VERSION;
     LOG(INFO) << "Config from " << cfgFile;
     VirtualClock clock(VirtualClock::REAL_TIME);
     Application::pointer app;
@@ -671,7 +671,7 @@ main(int argc, char* const* argv)
     }
     xdr::marshaling_stack_limit = 1000;
 
-    std::string cfgFile("stellar-core.cfg");
+    std::string cfgFile("digitalbits-core.cfg");
     std::string command;
     el::Level logLevel = el::Level::Info;
     std::vector<char*> rest;

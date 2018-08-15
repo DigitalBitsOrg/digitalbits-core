@@ -49,7 +49,7 @@ class Config : public std::enable_shared_from_this<Config>
 
     // application config
 
-    // The default way stellar-core starts is to load the state from disk and
+    // The default way digitalbits-core starts is to load the state from disk and
     // catch
     // up to the network before starting SCP.
     // If you need different behavior you need to use --newdb or --force-scp
@@ -117,7 +117,7 @@ class Config : public std::enable_shared_from_this<Config>
     // This is the number of failures you want to be able to tolerate.
     // You will need at least 3f+1 nodes in your quorum set.
     // If you don't have enough in your quorum set to tolerate the level you
-    //  set here stellar-core won't run.
+    //  set here digitalbits-core won't run.
     int32_t FAILURE_SAFETY;
 
     // If set to true allows you to specify an unsafe quorum set.

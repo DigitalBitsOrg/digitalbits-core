@@ -1516,13 +1516,13 @@
     <None Include="..\..\docs\readme.md">
       <Filter>docs</Filter>
     </None>
-    <None Include="..\..\docs\stellar-core_example.cfg">
+    <None Include="..\..\docs\digitalbits-core_example.cfg">
       <Filter>docs</Filter>
     </None>
-    <None Include="..\..\docs\stellar-core_standalone.cfg">
+    <None Include="..\..\docs\digitalbits-core_standalone.cfg">
       <Filter>docs</Filter>
     </None>
-    <None Include="..\..\docs\stellar-core_testnet.cfg">
+    <None Include="..\..\docs\digitalbits-core_testnet.cfg">
       <Filter>docs</Filter>
     </None>
     <None Include="..\..\docs\transaction.md">
@@ -1550,10 +1550,10 @@
     <None Include="..\..\src\history\readme.md">
       <Filter>history</Filter>
     </None>
-    <None Include="..\..\src\history\serialize-tests\stellar-history.livenet.15686975.json">
+    <None Include="..\..\src\history\serialize-tests\digitalbits-history.livenet.15686975.json">
       <Filter>history\tests\serialize-tests</Filter>
     </None>
-    <None Include="..\..\src\history\serialize-tests\stellar-history.testnet.6714239.json">
+    <None Include="..\..\src\history\serialize-tests\digitalbits-history.testnet.6714239.json">
       <Filter>history\tests\serialize-tests</Filter>
     </None>
   </ItemGroup>

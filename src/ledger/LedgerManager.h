@@ -169,7 +169,7 @@ class LedgerManager
     // unknown ledger versions.
     //
     // If first member of consensus buffer has different sequnce than candidate
-    // then we have error in code and stellar-core is aborted.
+    // then we have error in code and digitalbits-core is aborted.
     virtual HistoryManager::LedgerVerificationStatus
     verifyCatchupCandidate(LedgerHeaderHistoryEntry const& candidate,
                            bool manualCatchup) const = 0;

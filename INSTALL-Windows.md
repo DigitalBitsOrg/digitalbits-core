@@ -76,14 +76,14 @@ To setup the subsystem, go to https://msdn.microsoft.com/en-us/commandline/wsl/i
 
 Then, you can simply follow the [Linux instructions](./README.md)
 
-Note that you can (and should) install the Windows version of postgres even when running stellar-core from within WSL.
+Note that you can (and should) install the Windows version of postgres even when running digitalbits-core from within WSL.
 
 
 # Basic Installation
 
-- `git clone PATH_TO_STELLAR_CORE`
+- `git clone PATH_TO_DIGITALBITS_CORE`
 - `git submodule init`
 - `git submodule update`
-- Open the solution `Builds\VisualStudio\stellar-core.sln`
+- Open the solution `Builds\VisualStudio\digitalbits-core.sln`
 - Pick the target architecture and flavor (e.g. x64, Release)
 - Hit "Build Solution (F7)"
