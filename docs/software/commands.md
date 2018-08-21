@@ -135,7 +135,7 @@ debugging purpose).
 
 * **tx**
   `/tx?blob=Base64`<br>
-  submit a [transaction](../../learn/concepts/transactions.md) to the network.
+  submit a [transaction](../../guide/concepts/transactions.md) to the network.
   blob is a base64 encoded XDR serialized 'TransactionEnvelope', and it
   returns a JSON object with the following properties
   status:
@@ -180,5 +180,5 @@ debugging purpose).
 
 * **testtx**
  `/testtx?from=F&to=T&amount=N&[create=true]`<br>
-  Injects a payment transaction (or a create transaction if "create" is specified) from the account F to the account T, sending N XLM to the account.
+  Injects a payment transaction (or a create transaction if "create" is specified) from the account F to the account T, sending N XDB to the account.
   Note that F and T are seed strings but can also be specified as "root" as a shorthand for the root account for the test instance.
