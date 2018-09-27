@@ -33,7 +33,7 @@ forcescp doesn't change the requirements for quorum so although this node will e
 * **--ll LEVEL**: Set the log level. It is redundant with `--c ll` but we need this form if you want to change the log level during test runs.
 * **--metric METRIC**: Report metric METRIC on exit. Used for gathering a metric cumulatively during a test run.
 * **--newdb**: Clears the local database and resets it to the genesis ledger. If you connect to the network after that it will catch up from scratch. 
-* **--newhist ARCH**:  Initialize the named history archive ARCH. ARCH should be one of the history archives you have specified in the digitalbits-core.cfg. This will write a `.well-known/stellar-history.json` file in the archive root.
+* **--newhist ARCH**:  Initialize the named history archive ARCH. ARCH should be one of the history archives you have specified in the digitalbits-core.cfg. This will write a `.well-known/digitalbits-history.json` file in the archive root.
 * **--printtxn FILE**:  Pretty-print a binary file containing a
   `TransactionEnvelope`.  If FILE is "-", the transaction is read from
   standard input.

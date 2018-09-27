@@ -5,7 +5,7 @@ title: Integration with other services
 digitalbits-core is at the bottom of the DigitalBits stack, many other services can be
  built on top of it.
 
- Example of such services include Horizon, a modular service to assist with
+ Example of such services include Frontier, a modular service to assist with
  submitting transactions to the network as well as exposing a data model to
  query ledger history.
 

@@ -135,7 +135,7 @@ HistoryArchiveState::fromString(std::string const& str)
 std::string
 HistoryArchiveState::baseName()
 {
-    return std::string("stellar-history.json");
+    return std::string("digitalbits-history.json");
 }
 
 std::string

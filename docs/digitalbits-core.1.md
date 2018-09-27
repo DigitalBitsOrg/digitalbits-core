@@ -16,7 +16,7 @@ DigitalBits is a decentralized, federated peer-to-peer network that allows
 people to send payments in any asset anywhere in the world
 instantaneously, and with minimal fee. `digitalbits-core` is the core
 component of this network. `digitalbits-core` is a C++ implementation of
-the Stellar Consensus Protocol configured to construct a chain of
+the DigitalBits Consensus Protocol configured to construct a chain of
 ledgers that are guaranteed to be in agreement across all the
 participating nodes at all times.
 

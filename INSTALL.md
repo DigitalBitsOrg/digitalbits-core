@@ -1,6 +1,6 @@
 Installation Instructions
 ==================
-These are intructions for building digitalbits-core from source. For a potentially quicker set up we also have digitalbits-core in a docker container: https://github.com/digitalbitsorg/docker-digitalbits-core-horizon
+These are intructions for building digitalbits-core from source. For a potentially quicker set up we also have digitalbits-core in a docker container: https://github.com/digitalbitsorg/docker-digitalbits-core-frontier
 
 ## Picking a version to run
 

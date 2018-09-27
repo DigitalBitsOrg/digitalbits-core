@@ -27,10 +27,10 @@ Run digitalbits-core if you want to:
 
 ## Building
 See [readme](https://github.com/digitalbitsorg/digitalbits-core/blob/master/README.md) for build instructions.
-We also provide a [docker container](https://github.com/digitalbitsorg/docker-digitalbits-core-horizon) for a potentially quicker set up than building from source.
+We also provide a [docker container](https://github.com/digitalbitsorg/docker-digitalbits-core-frontier) for a potentially quicker set up than building from source.
 
 ## Package based Installation
-If you are using Ubuntu 16.04 LTS we provide the latest stable releases of [digitalbits-core](https://github.com/digitalbitsorg/digitalbits-core) and [digitalbits-horizon](https://github.com/digitalbitsorg/go/tree/master/services/horizon) in Debian binary package format.
+If you are using Ubuntu 16.04 LTS we provide the latest stable releases of [digitalbits-core](https://github.com/digitalbitsorg/digitalbits-core) and [digitalbits-frontier](https://github.com/digitalbitsorg/go/tree/master/services/frontier) in Debian binary package format.
 
 See [detailed installation instructions](https://github.com/digitalbitsorg/packages#sdf---packages)
 
@@ -47,7 +47,7 @@ digitalbits-core loads
 The [example config](https://github.com/digitalbitsorg/digitalbits-core/blob/master/docs/digitalbits-core_example.cfg) describes all the possible 
 configuration options.
 
-Here is an [example test network config](https://github.com/digitalbitsorg/docker-digitalbits-core-horizon/blob/master/testnet/core/etc/digitalbits-core.cfg) for connecting to the test network.
+Here is an [example test network config](https://github.com/digitalbitsorg/docker-digitalbits-core-frontier/blob/master/testnet/core/etc/digitalbits-core.cfg) for connecting to the test network.
 
 Here is an [example public network config](https://github.com/digitalbitsorg/docs/blob/master/other/digitalbits-core-validator-example.cfg) for connecting to the public network.
 
@@ -87,7 +87,7 @@ Digitalbits-core can be gracefully exited at any time by delivering `SIGINT` or
 
 Digitalbits-core can also be packaged in a container system such as Docker, so long 
 as `BUCKET_DIR_PATH`, `TMP_DIR_PATH`, and the database are stored on persistent 
-volumes. For an example, see [docker-digitalbits-core](https://github.com/digitalbitsorg/docker-digitalbits-core-horizon).
+volumes. For an example, see [docker-digitalbits-core-frontier](https://github.com/digitalbitsorg/docker-digitalbits-core-frontier).
 
 Note: `BUCKET_DIR_PATH` and `TMP_DIR_PATH` *must* reside on the same volume
 as digitalbits-core needs to rename files between the two.
@@ -118,7 +118,7 @@ As a node operator you can participate to the network in multiple ways.
 | ------------ | ------  | ---------| --------------  | -------------- |
 | description  | non-validator | all of watcher + publish to archive | all of watcher + active participation in consensus (submit proposals for the transaction set to include in the next ledger) | basic validator + publish to archive |
 | submits transactions | yes | yes | yes | yes |
-| supports horizon | yes | yes | yes | yes |
+| supports frontier | yes | yes | yes | yes |
 | participates in consensus | no | no | yes | yes |
 | helps other nodes to catch up and join the network | no | yes | no | yes |
 

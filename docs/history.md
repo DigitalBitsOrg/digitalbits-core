@@ -202,7 +202,7 @@ levels.
 ### Root HAS
 
 Every history archive has a "root" HAS which can be found at a fixed location within the archive:
-`.well-known/stellar-history.json`. This is kept in the RFC 5785 `.well-known` directory, and is
+`.well-known/digitalbits-history.json`. This is kept in the RFC 5785 `.well-known` directory, and is
 intended as a "starting place" for any client reading from a history archive. It is a duplicate copy
 of the most recent HAS file written to the archive. Reading the root HAS file gives enough
 information to navigate the rest of the archive. The root HAS file is also the _last_ file written
