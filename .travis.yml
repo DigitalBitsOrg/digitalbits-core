@@ -1,31 +1,31 @@
 language: cpp
 sudo: false
 compiler:
-- clang
-- gcc
+  - clang
+  - gcc
 env:
   global: CLOUDSMITH_API_KEY=$CLOUDSMITH_API_KEY
 addons:
   postgresql: '9.3'
   apt:
     sources:
-    - llvm-toolchain-trusty-3.5
-    - llvm-toolchain-trusty-5.0
-    - ubuntu-toolchain-r-test
+      - llvm-toolchain-trusty-3.5
+      - llvm-toolchain-trusty-5.0
+      - ubuntu-toolchain-r-test
     packages:
-    - autoconf
-    - automake
-    - bison
-    - clang-3.5
-    - flex
-    - g++-4.9
-    - libpq-dev
-    - libpq5
-    - libstdc++6
-    - libtool
-    - pkg-config
-    - clang-format-5.0
-    - pandoc
+      - autoconf
+      - automake
+      - bison
+      - clang-3.5
+      - flex
+      - g++-4.9
+      - libpq-dev
+      - libpq5
+      - libstdc++6
+      - libtool
+      - pkg-config
+      - clang-format-5.0
+      - pandoc
 script: travis_wait 60 ./travis-build.sh
 cache:
   directories:
@@ -36,12 +36,12 @@ notifications:
   slack:
     secure: a8rcL4V8xMB9t10t/izM3lMUN7xoXGW29HB885WaeBH/37q8y3l/m6bnIcCDAQUmt1QsentoEGSL1w/eCroM8GSTNabF7czVBn1zhLOFJ4k33jxgoK1fPBjYTE0U/IXZLzXJvD/NDL/jZzTuA4Gd+4L2I6UThN8bEmHVz/Y1rSOvoelst87xdZ4aRnvEWoYDhtZdJW3IUvivRf4iLB79VGFjxSp+uJe/MNi5Pf2V/deOb+peXpMiaSqM/xdT5yVnp/EI8n0qYNaA8EHGNgM7OGP7IRd6uBPmCsOP1iJoY+Y3ZkfuGlFZiRETJukMkuhLjjS+nL6n/DLcN2452pVsxJz8nNoa/2sd3ouJygYmmqGJ8h/FNLrBP+7OlH/R4y5LL1e8l7U1MgVfvUqFriOykcBMlUFjgbCgDJMJ1UdaHorvZ+9YQtkthHdmG43Y3KkxKzMYPd7cbQZrBaVAozgV+ipLdkT2ssppqjV/JyY6vs+SIHA9x46Rr3NZdaN8eVInYOdKliTjsxXbhaa6sHOs8YEPEULtyPpPi62ZwraWKJ1X149uJn78Yd1r0+S4r39u0k7sQuZ+c09Ftci8R66Wqvwm32cj3USM2x2lSHhZctsDEnGdCJxrWX153wfeqpat0prYVGhD0mHobwEhP2ipajvh3TbwXkpeAASa5eeEJJE=
 before_deploy:
-- sudo apt-get update
-- sudo apt-get install ruby-dev build-essential
-- sudo gem install fpm
-- pyenv global 2.7
-- pip install cloudsmith-cli
-- sudo apt install rpm
+  - sudo apt-get update
+  - sudo apt-get install ruby-dev build-essential
+  - sudo gem install fpm
+  - pyenv global 2.7
+  - pip install cloudsmith-cli
+  - sudo apt install rpm
 deploy:
   provider: script
   skip_cleanup: true
